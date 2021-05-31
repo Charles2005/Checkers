@@ -4,3 +4,6 @@ import pygame
 WIDTH, HEIGHT = (680, 680)
 ROWS, COLS = (8, 8)
 SQUARE_SIZE = WIDTH // COLS
+
+# FONTS and COLORS
+
