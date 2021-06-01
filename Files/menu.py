@@ -2,6 +2,7 @@ import pygame
 import sys
 from constants import MENU_BG, CHOICE_COLOR, TITLE_COLOR, CLICKED_COLOR
 from constants import WIDTH, HEIGHT
+from main import sc
 
 
 class Menu:
@@ -15,7 +16,6 @@ class Menu:
         self.choice_clicked_color = CLICKED_COLOR
 
     def display_menu(self):
-        from main import sc
         point = 0
         while 1:
             # Putting background
