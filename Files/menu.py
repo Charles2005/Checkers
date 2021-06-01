@@ -29,6 +29,9 @@ class Menu:
 
             # Blitting the text to the screen
             sc.blit(title, (WIDTH // 4, HEIGHT // 10))
+            sc.blit(start, (WIDTH//2.7, HEIGHT//2.8))
+            sc.blit(match_history, (WIDTH//4, HEIGHT//2))
+            sc.blit(quit, (WIDTH//2.7, HEIGHT // 1.6))
 
             # Handling Events
             for event in pygame.event.get():
