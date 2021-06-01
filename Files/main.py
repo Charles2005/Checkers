@@ -29,6 +29,7 @@ def main():
                 play = False
                 sys.exit()
 
+        sc.fill((255, 255, 255))
         # Updating the screen
         pygame.display.update()
     pygame.quit()

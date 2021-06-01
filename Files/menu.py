@@ -16,16 +16,27 @@ class Menu:
 
     def display_menu(self):
         from main import sc
-        menu = True
-        while menu:
+        point = 0
+        while 1:
             # Putting background
             sc.fill(MENU_BG)
-
             # Rendering the Fonts
             title = self.title_font.render("Checkers", True, TITLE_COLOR)
-            start = self.choice_font.render("Start", True, CHOICE_COLOR)
-            match_history = self.choice_font.render("Match History", True, CHOICE_COLOR)
-            quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
+            if point == 0:
+                # Rendering the Fonts
+                start = self.choice_font.render("Start", True, CLICKED_COLOR)
+                match_history = self.choice_font.render("Match History", True, CHOICE_COLOR)
+                quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
+            elif point == 1:
+                # Rendering the Fonts
+                start = self.choice_font.render("Start", True, CHOICE_COLOR)
+                match_history = self.choice_font.render("Match History", True, CLICKED_COLOR)
+                quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
+            elif point == 2:
+                # Rendering the Fonts
+                start = self.choice_font.render("Start", True, CHOICE_COLOR)
+                match_history = self.choice_font.render("Match History", True, CHOICE_COLOR)
+                quit = self.choice_font.render("Quit", True, CLICKED_COLOR)
 
             # Blitting the text to the screen
             sc.blit(title, (WIDTH // 4, HEIGHT // 10))
@@ -39,5 +50,22 @@ class Menu:
                     menu = False
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_DOWN:
+                        point += 1
+                        if point > 2:
+                            point = 2
+                    elif event.key == pygame.K_UP:
+                        point -= 1
+                        if point < 0:
+                            point = 0
+                    elif event.key == pygame.K_RETURN:
+                        if point == 0:
+                            return True
+                        elif point == 1:
+                            pass
+                        elif point == 2:
+                            pygame.quit()
+                            sys.exit()
             # Updating the Screen
             pygame.display.update()
