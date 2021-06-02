@@ -9,7 +9,6 @@ class Menu:
     def __init__(self):
         self.title_font = pygame.font.Font("C:/WINDOWS/FONTS/CASCADIAMONOPL.ttf", 64)
         self.choice_font = pygame.font.Font("C:/WINDOWS/FONTS/CASCADIAMONOPL.ttf", 48)
-        self.clicked = False
         self.bg_color = MENU_BG
         self.title_color = TITLE_COLOR
         self.choice_color = CHOICE_COLOR

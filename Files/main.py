@@ -1,6 +1,7 @@
 import menu
 import pygame
 import sys
+from board import Board
 from constants import WIDTH, HEIGHT
 from constants import ICON
 
@@ -14,6 +15,8 @@ pygame.display.set_icon(ICON)
 
 # Main function
 def main():
+    # Class objects
+    board = Board()
     # Blitting Menu Choices in the screen
     menu_screen = menu.Menu()
     menu_screen.display_menu()
@@ -28,8 +31,10 @@ def main():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 play = False
                 sys.exit()
-
-        sc.fill((255, 255, 255))
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pass
+        # Draw the board
+        board.draw_board(sc)
         # Updating the screen
         pygame.display.update()
     pygame.quit()
