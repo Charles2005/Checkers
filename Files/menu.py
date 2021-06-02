@@ -22,16 +22,19 @@ class Menu:
             sc.fill(MENU_BG)
             # Rendering the Fonts
             title = self.title_font.render("Checkers", True, TITLE_COLOR)
+            # If choice is in start
             if point == 0:
                 # Rendering the Fonts
                 start = self.choice_font.render("Start", True, CLICKED_COLOR)
                 match_history = self.choice_font.render("Match History", True, CHOICE_COLOR)
                 quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
+            # If choice is in match history
             elif point == 1:
                 # Rendering the Fonts
                 start = self.choice_font.render("Start", True, CHOICE_COLOR)
                 match_history = self.choice_font.render("Match History", True, CLICKED_COLOR)
                 quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
+            # If choice is in quit
             elif point == 2:
                 # Rendering the Fonts
                 start = self.choice_font.render("Start", True, CHOICE_COLOR)
@@ -50,15 +53,19 @@ class Menu:
                     menu = False
                     pygame.quit()
                     sys.exit()
+                # Keyboard press down
                 if event.type == pygame.KEYDOWN:
+                    # down arrow pressed
                     if event.key == pygame.K_DOWN:
                         point += 1
                         if point > 2:
                             point = 2
+                    # Up arrow pressed
                     elif event.key == pygame.K_UP:
                         point -= 1
                         if point < 0:
                             point = 0
+                    # Enter pressed
                     elif event.key == pygame.K_RETURN:
                         if point == 0:
                             return True
