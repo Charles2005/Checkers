@@ -2,7 +2,7 @@ import menu
 import pygame
 import sys
 from board import Board
-from constants import WIDTH, HEIGHT
+from constants import WIDTH, HEIGHT, SQUARE_SIZE
 from constants import ICON
 
 # Pygame Initialization
@@ -12,6 +12,14 @@ pygame.init()
 sc = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Checkers")
 pygame.display.set_icon(ICON)
+
+# Getting position of piece using mouse click
+def get_pos(pos):
+    x, y = pos
+    row = y // SQUARE_SIZE
+    col = x // SQUARE_SIZE
+    return row, col
+
 
 # Main function
 def main():
@@ -23,9 +31,7 @@ def main():
     # Variables needed in main
     play = True
     clock = pygame.time.Clock()
-    # Movement
-    piece = board.get_piece(0, 1)
-    board.movement(piece, 4, 3)
+
     # Game loop
     while play:
         clock.tick(60)
@@ -35,7 +41,10 @@ def main():
                 play = False
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pass
+                pos = pygame.mouse.get_pos()
+                row, col = get_pos(pos)
+                piece = board.get_piece(row, col)
+
         # Draw the board
         board.draw_board(sc)
         # Updating the screen
