@@ -10,6 +10,7 @@ ICON = pygame.image.load("../Assets/checkers_icon.png")
 KING = pygame.transform.scale(pygame.image.load("../Assets/crown.png"), (44, 25))
 # COLORS
 WHITE = (255, 255, 255)
+RED = (255, 0, 0)
 BOARD_WHITE = pygame.Color("#E6E6E6")
 BOARD_BLACK = pygame.Color("#39393A")
 MENU_BG = pygame.Color("#85FFC7")

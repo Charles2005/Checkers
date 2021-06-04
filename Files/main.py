@@ -4,6 +4,8 @@ import sys
 from board import Board
 from constants import WIDTH, HEIGHT, SQUARE_SIZE
 from constants import ICON
+from constants import PLAYER_COLOR
+from game import Game
 
 # Pygame Initialization
 pygame.init()
@@ -12,6 +14,7 @@ pygame.init()
 sc = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Checkers")
 pygame.display.set_icon(ICON)
+
 
 # Getting position of piece using mouse click
 def get_pos(pos):
@@ -25,6 +28,7 @@ def get_pos(pos):
 def main():
     # Class objects
     board = Board()
+    game = Game(sc)
     # Blitting Menu Choices in the screen
     menu_screen = menu.Menu()
     menu_screen.display_menu()
@@ -35,6 +39,10 @@ def main():
     # Game loop
     while play:
         clock.tick(60)
+        # Printing the winner
+        if game.winner() != None:
+            print(game.winner())
+            play = False
         # Checking events
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
@@ -43,12 +51,9 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 row, col = get_pos(pos)
-                piece = board.get_piece(row, col)
+                game.select(row, col)
 
-        # Draw the board
-        board.draw_board(sc)
-        # Updating the screen
-        pygame.display.update()
+        game.update()
     pygame.quit()
 
 
