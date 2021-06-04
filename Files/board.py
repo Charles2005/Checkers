@@ -39,7 +39,7 @@ class Board:
                 else:
                     self.board[row].append(0)
 
-    def draw_board(self, screen ):
+    def draw_board(self, screen):
         """
         Draw the whole board
         """
@@ -49,6 +49,22 @@ class Board:
                 piece = self.board[row][col]
                 if piece != 0:
                     piece.draw_piece(screen)
+
+    def movement(self, piece, row, col):
+        self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
+        piece.piece_move(row, col)
+
+        if row == ROWS or row == 0:
+            piece.create_king()
+            if piece.color == AI_COLOR:
+                self.orange_kings += 1
+            else:
+                self.green_kings += 1
+
+    def get_piece(self, row, col):
+        return self.board[row][col]
+
+
 
 
 

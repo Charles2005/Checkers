@@ -7,6 +7,7 @@ SQUARE_SIZE = WIDTH // COLS
 
 # IMAGES AND ICONS
 ICON = pygame.image.load("../Assets/checkers_icon.png")
+KING = pygame.transform.scale(pygame.image.load("../Assets/crown.png"), (44, 25))
 # COLORS
 WHITE = (255, 255, 255)
 BOARD_WHITE = pygame.Color("#E6E6E6")
@@ -17,3 +18,4 @@ CHOICE_COLOR = pygame.Color("#297373")
 CLICKED_COLOR = pygame.Color("#FF8552")
 PLAYER_COLOR = pygame.Color("#FF8552")
 AI_COLOR = pygame.Color("#297373")
+

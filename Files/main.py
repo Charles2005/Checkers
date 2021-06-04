@@ -23,6 +23,9 @@ def main():
     # Variables needed in main
     play = True
     clock = pygame.time.Clock()
+    # Movement
+    piece = board.get_piece(0, 1)
+    board.movement(piece, 4, 3)
     # Game loop
     while play:
         clock.tick(60)

@@ -1,6 +1,7 @@
 import pygame
-from constants import PLAYER_COLOR, AI_COLOR, WHITE
+from constants import PLAYER_COLOR, WHITE
 from constants import SQUARE_SIZE
+from constants import KING
 
 
 class Piece:
@@ -27,7 +28,7 @@ class Piece:
         self.x = SQUARE_SIZE * self.col + SQUARE_SIZE // 2
         self.y = SQUARE_SIZE * self.row + SQUARE_SIZE // 2
 
-    def king(self):
+    def create_king(self):
         self.king = True
 
     def draw_piece(self, screen):
@@ -37,6 +38,14 @@ class Piece:
         radius = SQUARE_SIZE // 2 - self.padding
         pygame.draw.circle(screen, WHITE, (self.x, self.y), radius + self.outline)
         pygame.draw.circle(screen, self.color, (self.x, self.y), radius)
+        # If there is a king draw the king
+        if self.king:
+            screen.blit(KING, (self.x - KING.get_width()//2, self.y - KING.get_height()//2))
+
+    def piece_move(self, row, col):
+        self.row = row
+        self.col = col
+        self.position()
 
     def __repr__(self):
         return str(self.color)
