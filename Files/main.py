@@ -4,7 +4,6 @@ import sys
 from board import Board
 from constants import WIDTH, HEIGHT, SQUARE_SIZE
 from constants import ICON
-from constants import PLAYER_COLOR
 from game import Game
 
 # Pygame Initialization

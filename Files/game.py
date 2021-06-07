@@ -38,6 +38,9 @@ class Game:
         return False
 
     def move(self, row, col):
+        """
+        Moving the the selected piece
+        """
         piece = self.board.get_piece(row, col)
         if self.selected and piece == 0 and (row, col) in self.valid_move:
             self.board.movement(self.selected, row, col)

@@ -51,7 +51,7 @@ class Board:
 
     def movement(self, piece, row, col):
         """
-        Method to be able to move the piece
+        Tracking the movement of the piece
         """
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
         piece.piece_move(row, col)
