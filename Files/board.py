@@ -88,15 +88,15 @@ class Board:
         row = piece.row
 
         if piece.color == PLAYER_COLOR or piece.king:
-            moves.update(self._traverse_left(row-1, max(row-3, -1), -1, piece.color, left))
-            moves.update(self._traverse_right(row - 1, max(row - 3, -1), -1, piece.color, right))
+            moves.update(self._path_left(row-1, max(row-3, -1), -1, piece.color, left))
+            moves.update(self._path_right(row - 1, max(row - 3, -1), -1, piece.color, right))
         if piece.color == AI_COLOR or piece.king:
-            moves.update(self._traverse_left(row + 1, min(row + 3, ROWS), 1, piece.color, left))
-            moves.update(self._traverse_right(row + 1, min(row + 3, ROWS), 1, piece.color, right))
+            moves.update(self._path_left(row + 1, min(row + 3, ROWS), 1, piece.color, left))
+            moves.update(self._path_right(row + 1, min(row + 3, ROWS), 1, piece.color, right))
 
         return moves
 
-    def _traverse_left(self, start, stop, step, color, left, skip=[]):
+    def _path_left(self, start, stop, step, color, left, skip=[]):
         """
         Creating a move through left diagonal
         """
@@ -120,8 +120,8 @@ class Board:
                     else:
                         row = min(i+3, ROWS)
 
-                    moves.update(self._traverse_left(i+step, row, step, color, left-1, skip=last))
-                    moves.update(self._traverse_right(i + step, row, step, color, left + 1, skip=last))
+                    moves.update(self._path_left(i+step, row, step, color, left-1, skip=last))
+                    moves.update(self._path_right(i + step, row, step, color, left + 1, skip=last))
                 break
             elif current_pos.color == color:
                 break
@@ -131,7 +131,7 @@ class Board:
             left -= 1
         return moves
 
-    def _traverse_right(self, start, stop, step, color, right, skip=[]):
+    def _path_right(self, start, stop, step, color, right, skip=[]):
         """
         Creating a move through right diagonal
 
@@ -156,8 +156,8 @@ class Board:
                     else:
                         row = min(i + 3, ROWS)
 
-                    moves.update(self._traverse_left(i + step, row, step, color, right - 1, skip=last))
-                    moves.update(self._traverse_right(i + step, row, step, color, right + 1, skip=last))
+                    moves.update(self._path_left(i + step, row, step, color, right - 1, skip=last))
+                    moves.update(self._path_right(i + step, row, step, color, right + 1, skip=last))
                 break
             elif current_pos.color == color:
                 break

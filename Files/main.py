@@ -26,7 +26,6 @@ def get_pos(pos):
 # Main function
 def main():
     # Class objects
-    board = Board()
     game = Game(sc)
     # Blitting Menu Choices in the screen
     menu_screen = menu.Menu()

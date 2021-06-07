@@ -63,7 +63,7 @@ class Game:
     def draw_valid_moves(self, moves):
         for move in moves:
             row, col = move
-            pygame.draw.circle(self.screen, RED,(col * SQUARE_SIZE + SQUARE_SIZE//2, row * SQUARE_SIZE + SQUARE_SIZE//2), 15)
+            pygame.draw.circle(self.screen, RED, (col * SQUARE_SIZE + SQUARE_SIZE//2, row * SQUARE_SIZE + SQUARE_SIZE//2), 15)
 
     def winner(self):
         return self.board.get_winner()
