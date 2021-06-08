@@ -63,6 +63,9 @@ class Board:
             else:
                 self.orange_kings += 1
 
+    def eval(self):
+        return self.orange_left - self.green_left + (self.orange_kings * 0.9 - self.green_kings * 0.9)
+
     def remove(self, pieces):
         """
         Removing the piece if it is eaten
@@ -77,6 +80,14 @@ class Board:
 
     def get_piece(self, row, col):
         return self.board[row][col]
+
+    def get_all_pieces(self, color):
+        pieces = []
+        for row in self.board:
+            for piece in row:
+                if piece != 0 and piece.color == color:
+                    pieces.append(piece)
+        return pieces
 
     def get_valid_moves(self, piece):
         """

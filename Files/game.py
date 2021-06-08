@@ -12,6 +12,9 @@ class Game:
         self.valid_move = {}
         self.screen = screen
 
+    def get_board(self):
+        return self.board
+
     def update(self):
         self.board.draw_board(self.screen)
         self.draw_valid_moves(self.valid_move)
@@ -64,6 +67,10 @@ class Game:
         for move in moves:
             row, col = move
             pygame.draw.circle(self.screen, RED, (col * SQUARE_SIZE + SQUARE_SIZE//2, row * SQUARE_SIZE + SQUARE_SIZE//2), 15)
+
+    def ai_turn(self, board):
+        self.board = board
+        self.change_turn()
 
     def winner(self):
         return self.board.get_winner()
