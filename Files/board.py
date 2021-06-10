@@ -16,7 +16,7 @@ class Board:
         Draw the WHITE SQUARES OF THE BOARD
         """
         screen.fill(BOARD_BLACK)  # Fill the board with black first
-        # Loop to
+        # Loop to make white squares
         for row in range(ROWS):
             for col in range(row % 2, COLS, 2):
                 pygame.draw.rect(screen, BOARD_WHITE, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
@@ -64,7 +64,7 @@ class Board:
                 self.orange_kings += 1
 
     def eval(self):
-        return self.orange_left - self.green_left + (self.orange_kings * 0.9 - self.green_kings * 0.9)
+        return self.green_left - self.orange_left + (self.green_kings * 0.9 - self.orange_kings * 0.9)
 
     def remove(self, pieces):
         """

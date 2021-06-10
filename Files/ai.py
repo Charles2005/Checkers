@@ -1,5 +1,4 @@
 from copy import deepcopy
-import pygame
 from constants import PLAYER_COLOR, AI_COLOR
 
 
@@ -43,10 +42,10 @@ def all_moves(board, color, game):
     return moves
 
 
-def move_simulation(piece, move, board, game, skip):
+def move_simulation(piece, move, board, game, skipped):
     board.movement(piece, move[0], move[1])
-    if skip:
-        board.remove(skip)
+    if skipped:
+        board.remove(skipped)
     return board
 
 
