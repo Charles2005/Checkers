@@ -1,12 +1,11 @@
 import menu
 import pygame
-import sys
-from board import Board
 from constants import WIDTH, HEIGHT, SQUARE_SIZE
 from constants import ICON
 from game import Game
 from constants import AI_COLOR
 from ai import minimax_algorithm
+
 # Pygame Initialization
 pygame.init()
 
@@ -23,7 +22,6 @@ def get_pos(pos):
     col = x // SQUARE_SIZE
     return row, col
 
-
 # Main function
 def main():
     # Class objects
@@ -38,20 +36,20 @@ def main():
     # Game loop
     while play:
         clock.tick(60)
-        # Printing the winner
+        # Winner
         if game.winner() != None:
-            print(game.winner())
-            play = False
+            menu_screen.display_menu()
+            main()
         # If AI turn
         if game.turn == AI_COLOR:
-            value, new_board = minimax_algorithm(game.get_board(), 4, AI_COLOR, game)
+            value, new_board = minimax_algorithm(game.get_board(), 3, AI_COLOR, game)
             game.ai_turn(new_board)
 
         # Checking events
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
-                play = False
-                sys.exit()
+                menu_screen.display_menu()
+                main()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 row, col = get_pos(pos)

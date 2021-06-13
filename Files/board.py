@@ -1,14 +1,15 @@
 import pygame
 from constants import BOARD_BLACK, BOARD_WHITE, AI_COLOR, PLAYER_COLOR
-from constants import ROWS, COLS, SQUARE_SIZE
+from constants import ROWS, COLS, SQUARE_SIZE, WIDTH, HEIGHT
 from piece import Piece
-
 
 class Board:
     def __init__(self):
         self.board = []
-        self.orange_left = self.green_left = 12
-        self.orange_kings = self.green_kings = 0
+        self.orange_left = 12
+        self.green_left = 12
+        self.orange_kings = 0
+        self.green_kings = 0
         self.create_board()
 
     def board_squares(self, screen):
@@ -182,10 +183,10 @@ class Board:
         """
         Getting the winner of the game
         """
-        if self.orange_left <= 0:
-            return AI_COLOR
+        if self.orange_left <= 0 or self.orange_left == 1:
+            return 0
         elif self.green_left <= 0:
-            return PLAYER_COLOR
+            return 1
 
         return None
 

@@ -1,7 +1,7 @@
 import pygame
 from constants import MENU_BG, CHOICE_COLOR, CLICKED_COLOR
 
-class MatchHistory:
+class Help:
     def __init__(self):
         pass
 

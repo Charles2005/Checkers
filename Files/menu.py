@@ -16,6 +16,7 @@ class Menu:
 
     def display_menu(self):
         point = 0
+        mouse_pos = pygame.mouse.get_pos()
         while 1:
             # Putting background
             sc.fill(MENU_BG)
@@ -25,25 +26,27 @@ class Menu:
             if point == 0:
                 # Rendering the Fonts
                 start = self.choice_font.render("Start", True, CLICKED_COLOR)
-                match_history = self.choice_font.render("Match History", True, CHOICE_COLOR)
+                # Match text
+                help = self.choice_font.render("Help", True, CHOICE_COLOR)
+                # Quit Text
                 quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
             # If choice is in match history
             elif point == 1:
                 # Rendering the Fonts
                 start = self.choice_font.render("Start", True, CHOICE_COLOR)
-                match_history = self.choice_font.render("Match History", True, CLICKED_COLOR)
+                help = self.choice_font.render("Help", True, CLICKED_COLOR)
                 quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
             # If choice is in quit
             elif point == 2:
                 # Rendering the Fonts
                 start = self.choice_font.render("Start", True, CHOICE_COLOR)
-                match_history = self.choice_font.render("Match History", True, CHOICE_COLOR)
+                help = self.choice_font.render("Help", True, CHOICE_COLOR)
                 quit = self.choice_font.render("Quit", True, CLICKED_COLOR)
 
             # Blitting the text to the screen
             sc.blit(title, (WIDTH // 4, HEIGHT // 10))
             sc.blit(start, (WIDTH//2.7, HEIGHT//2.8))
-            sc.blit(match_history, (WIDTH//4, HEIGHT//2))
+            sc.blit(help, (WIDTH//2.7, HEIGHT//2))
             sc.blit(quit, (WIDTH//2.7, HEIGHT // 1.6))
 
             # Handling Events
