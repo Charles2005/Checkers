@@ -2,7 +2,7 @@ from copy import deepcopy
 from constants import PLAYER_COLOR, AI_COLOR
 
 
-def minimax_algorithm(pos, depth, player_max, game):
+def ai_algorithm(pos, depth, player_max, game):
     if depth == 0 or pos.get_winner() != None:
         return pos.eval(), pos
 
@@ -11,7 +11,7 @@ def minimax_algorithm(pos, depth, player_max, game):
         best_move = None
 
         for move in all_moves(pos, AI_COLOR, game):
-            evaluation = minimax_algorithm(move, depth-1, False, game)[0]
+            evaluation = ai_algorithm(move, depth-1, False, game)[0]
             max_eval = max(max_eval, evaluation)
             if max_eval == evaluation:
                 best_move = move
@@ -22,7 +22,7 @@ def minimax_algorithm(pos, depth, player_max, game):
         min_eval = float('inf')
         best_move = None
         for move in all_moves(pos, PLAYER_COLOR, game):
-            evaluation = minimax_algorithm(move, depth-1, True, game)[0]
+            evaluation = ai_algorithm(move, depth-1, True, game)[0]
             min_eval = min(min_eval, evaluation)
             if min_eval == evaluation:
                 best_move = move
@@ -35,9 +35,9 @@ def all_moves(board, color, game):
     for piece in board.get_all_pieces(color):
         valid_moves = board.get_valid_moves(piece)
         for move, skip in valid_moves.items():
-            temp_board = deepcopy(board)
-            temp_piece = temp_board.get_piece(piece.row, piece.col)
-            new_board = move_simulation(temp_piece, move, temp_board, game, skip)
+            copy_board = deepcopy(board)
+            copy_piece = copy_board.get_piece(piece.row, piece.col)
+            new_board = move_simulation(copy_piece, move, copy_board, game, skip)
             moves.append(new_board)
     return moves
 
@@ -45,7 +45,7 @@ def all_moves(board, color, game):
 def move_simulation(piece, move, board, game, skipped):
     board.movement(piece, move[0], move[1])
     if skipped:
-        board.remove(skipped)
+        board.eaten(skipped)
     return board
 
 

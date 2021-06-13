@@ -1,16 +1,16 @@
 import pygame
 from constants import BOARD_BLACK, BOARD_WHITE, AI_COLOR, PLAYER_COLOR
-from constants import ROWS, COLS, SQUARE_SIZE, WIDTH, HEIGHT
+from constants import ROWS, COLS, SQUARE_SIZE
 from piece import Piece
 
 class Board:
     def __init__(self):
         self.board = []
+        self.create_board()
         self.orange_left = 12
         self.green_left = 12
         self.orange_kings = 0
         self.green_kings = 0
-        self.create_board()
 
     def board_squares(self, screen):
         """
@@ -39,7 +39,7 @@ class Board:
                 else:
                     self.board[row].append(0)
 
-    def draw_board(self, screen):
+    def whole_board(self, screen):
         """
         Draw the whole board
         """
@@ -67,7 +67,7 @@ class Board:
     def eval(self):
         return self.green_left - self.orange_left + (self.green_kings * 0.9 - self.orange_kings * 0.9)
 
-    def remove(self, pieces):
+    def eaten(self, pieces):
         """
         Removing the piece if it is eaten
         """

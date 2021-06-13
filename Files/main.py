@@ -4,7 +4,7 @@ from constants import WIDTH, HEIGHT, SQUARE_SIZE
 from constants import ICON
 from game import Game
 from constants import AI_COLOR
-from ai import minimax_algorithm
+from ai import ai_algorithm
 
 # Pygame Initialization
 pygame.init()
@@ -42,7 +42,7 @@ def main():
             main()
         # If AI turn
         if game.turn == AI_COLOR:
-            value, new_board = minimax_algorithm(game.get_board(), 3, AI_COLOR, game)
+            value, new_board = ai_algorithm(game.get_board(), 3, AI_COLOR, game)
             game.ai_turn(new_board)
 
         # Checking events

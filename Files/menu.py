@@ -26,28 +26,18 @@ class Menu:
             if point == 0:
                 # Rendering the Fonts
                 start = self.choice_font.render("Start", True, CLICKED_COLOR)
-                # Match text
-                help = self.choice_font.render("Help", True, CHOICE_COLOR)
                 # Quit Text
                 quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
             # If choice is in match history
             elif point == 1:
                 # Rendering the Fonts
                 start = self.choice_font.render("Start", True, CHOICE_COLOR)
-                help = self.choice_font.render("Help", True, CLICKED_COLOR)
-                quit = self.choice_font.render("Quit", True, CHOICE_COLOR)
-            # If choice is in quit
-            elif point == 2:
-                # Rendering the Fonts
-                start = self.choice_font.render("Start", True, CHOICE_COLOR)
-                help = self.choice_font.render("Help", True, CHOICE_COLOR)
                 quit = self.choice_font.render("Quit", True, CLICKED_COLOR)
 
             # Blitting the text to the screen
             sc.blit(title, (WIDTH // 4, HEIGHT // 10))
-            sc.blit(start, (WIDTH//2.7, HEIGHT//2.8))
-            sc.blit(help, (WIDTH//2.7, HEIGHT//2))
-            sc.blit(quit, (WIDTH//2.7, HEIGHT // 1.6))
+            sc.blit(start, (WIDTH//6.5, HEIGHT//2))
+            sc.blit(quit, (WIDTH// 1.7, HEIGHT // 2))
 
             # Handling Events
             for event in pygame.event.get():
@@ -58,22 +48,20 @@ class Menu:
                 # Keyboard press down
                 if event.type == pygame.KEYDOWN:
                     # down arrow pressed
-                    if event.key == pygame.K_DOWN:
+                    if event.key == pygame.K_RIGHT:
                         point += 1
-                        if point > 2:
-                            point = 2
+                        if point > 1:
+                            point = 1
                     # Up arrow pressed
-                    elif event.key == pygame.K_UP:
+                    elif event.key == pygame.K_LEFT:
                         point -= 1
                         if point < 0:
                             point = 0
                     # Enter pressed
-                    elif event.key == pygame.K_RETURN:
+                    elif event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
                         if point == 0:
                             return True
                         elif point == 1:
-                            pass
-                        elif point == 2:
                             pygame.quit()
                             sys.exit()
             # Updating the Screen

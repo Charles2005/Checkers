@@ -1,5 +1,5 @@
 import pygame
-from constants import PLAYER_COLOR, WHITE
+from constants import  WHITE
 from constants import SQUARE_SIZE
 from constants import KING
 
@@ -29,7 +29,7 @@ class Piece:
 
     def draw_piece(self, screen):
         """
-        Drawing the piece and calculating the size of it
+        Drawing the the pieces, outline, and king
         """
         radius = SQUARE_SIZE // 2 - self.padding
         pygame.draw.circle(screen, WHITE, (self.x, self.y), radius + self.outline)

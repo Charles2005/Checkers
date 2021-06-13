@@ -1,0 +1,3 @@
+- Use Keyboard arrow key to navigate the menu and enter button for pressing the choice.
+- Use ESC button in keyboard to go back to the menu screen.  
+- Run the main.py to play the game.

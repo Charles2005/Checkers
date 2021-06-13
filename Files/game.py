@@ -6,25 +6,22 @@ from board import Board
 
 class Game:
     def __init__(self, screen):
-        self.selected = None
         self.board = Board()
-        self.turn = PLAYER_COLOR
         self.valid_move = {}
+        self.turn = PLAYER_COLOR
+        self.selected = None
         self.screen = screen
+
+    def winner(self):
+        return self.board.get_winner()
 
     def get_board(self):
         return self.board
 
     def update(self):
-        self.board.draw_board(self.screen)
+        self.board.whole_board(self.screen)
         self.draw_valid_moves(self.valid_move)
         pygame.display.update()
-
-    def reset(self):
-        self.selected = None
-        self.board = Board()
-        self.turn = PLAYER_COLOR
-        self.valid_move = {}
 
     def select(self, row, col):
         if self.selected:
@@ -49,12 +46,18 @@ class Game:
             self.board.movement(self.selected, row, col)
             skip = self.valid_move[(row, col)]
             if skip:
-                self.board.remove(skip)
+                self.board.eaten(skip)
             self.change_turn()
         else:
             return False
 
         return True
+
+    def draw_valid_moves(self, moves):
+        for move in moves:
+            row, col = move
+            pygame.draw.circle(self.screen, RED,
+                               (col * SQUARE_SIZE + SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2), 15)
 
     def change_turn(self):
         self.valid_move = {}
@@ -63,15 +66,8 @@ class Game:
         else:
             self.turn = PLAYER_COLOR
 
-    def draw_valid_moves(self, moves):
-        for move in moves:
-            row, col = move
-            pygame.draw.circle(self.screen, RED, (col * SQUARE_SIZE + SQUARE_SIZE//2, row * SQUARE_SIZE + SQUARE_SIZE//2), 15)
-
     def ai_turn(self, board):
         self.board = board
         self.change_turn()
 
-    def winner(self):
-        return self.board.get_winner()
 
